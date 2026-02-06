@@ -1,6 +1,6 @@
 {
-  "name": "Calculatrice",
-  "short_name": "Calc",
+  "name": "Sacs",
+  "short_name": "Sacs",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#1e1e2f",
@@ -17,4 +17,5 @@
       "type": "image/png"
     }
   ]
+
 }
