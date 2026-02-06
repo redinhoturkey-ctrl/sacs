@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Sac</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        background: linear-gradient(135deg, #7b1e2b, #a8324a);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .wrapper {
+        width: 100%;
+        max-width: 420px;
+        text-align: center;
+    }
+
+    .main-title {
+        margin-bottom: 16px;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #ffffff;
+    }
+
+    .container {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .field {
+        margin-bottom: 28px;
+        text-align: center;
+    }
+
+    .label {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #333;
+    }
+
+    .box {
+        width: 100%;
+        height: 80px;
+        border-radius: 12px;
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid;
+    }
+
+    /* Code postal */
+    input.box {
+        background-color: #fce8ec;
+        color: #7b1e2b;
+        border-color: #a8324a;
+        outline: none;
+    }
+
+    input.box:focus {
+        box-shadow: 0 0 0 3px rgba(168, 50, 74, 0.3);
+    }
+
+    /* Code sac */
+    #result {
+        background-color: #e6f4ff;
+        color: #0d47a1;
+        border-color: #64b5f6;
+    }
+
+    .error {
+        background-color: #fdecea !important;
+        color: #c62828 !important;
+        border-color: #c62828 !important;
+        font-size: 1.5rem;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+    <div class="main-title">Outil de recherche de code sac</div>
+
+    <div class="container">
+
+        <div class="field">
+            <div class="label">Code postal</div>
+            <input
+                type="tel"
+                id="postcode"
+                class="box"
+                maxlength="5"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                autocomplete="off"
+                oninput="findCodeSac()"
+            >
+        </div>
+
+        <div class="field">
+            <div class="label">Code sac</div>
+            <div id="result" class="box"></div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    const table = {
+        "63000": "1001",
+        "63001": "1002",
+        "63002": "1003",
+        "63003": "1004",
+        "63004": "1005",
+        "63005": "1006",
+        "63006": "1007",
+        "63007": "1008",
+        "63008": "1009",
+        "63009": "1010"
+    };
+
+    function findCodeSac() {
+        const input = document.getElementById("postcode");
+        const result = document.getElementById("result");
+
+        input.value = input.value.replace(/\D/g, "");
+        const code = input.value;
+
+        if (code.length < 5) {
+            result.textContent = "";
+            result.className = "box";
+            return;
+        }
+
+        if (table[code]) {
+            result.textContent = table[code];
+            result.className = "box";
+        } else {
+            result.textContent = "Non trouvé";
+            result.className = "box error";
+        }
+    }
+</script>
+
+</body>
+</html>
